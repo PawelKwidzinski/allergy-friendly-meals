@@ -1,13 +1,22 @@
-server:
-  port: 8080
 spring:
   application:
     name: "histamine-food"
   profiles:
     active: "dev"
+  config:
+    import: "optional:configserver:http://localhost:8888"
 
   sql:
     init:
       schema-locations: classpath:db/schema.sql
       data-locations: classpath:db/data.sql
       mode: never
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+server:
+  port: 8080
