@@ -15,12 +15,12 @@ public class FoodHistamineLevel {
     @Id
     private Integer id;
     private Integer compatibility;
-    private String histamineScore;
-    private String amines;
-    private String liberators;
-    private String blockers;
-    private String foodItem;
-    private String notes;
+    private String histamine;
+    private String otherAmines;
+    private String liberator;
+    private String blocker;
+    private String ingredient;
+    private String remarks;
     private String foodSubcategory;
     private String foodCategory;
 }
