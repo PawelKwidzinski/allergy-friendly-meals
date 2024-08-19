@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS food_histamine_levels
+CREATE TABLE IF NOT EXISTS histamine_levels
 (
     id               INT AUTO_INCREMENT PRIMARY KEY,
     compatibility    INT,
