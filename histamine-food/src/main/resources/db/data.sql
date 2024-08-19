@@ -1,4 +1,4 @@
-INSERT INTO food_histamine_levels (compatibility, histamine, other_amines, liberator, blocker, ingredient, remarks,
+INSERT INTO histamine_levels (compatibility, histamine, other_amines, liberator, blocker, ingredient, remarks,
                                     food_subcategory, food_category)
 VALUES (2, 'L', NULL, NULL, NULL, 'egg white', 'Mast cell activating especially raw, but even cooked', 'Eggs',
         'Animal foods'),

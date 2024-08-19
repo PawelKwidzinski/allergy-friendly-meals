@@ -9,8 +9,8 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-@Table(name = "food_histamine_levels")
-public class FoodHistamineLevel {
+@Table(name = "histamine_levels")
+public class HistamineLevel {
 
     @Id
     private Integer id;
