@@ -1,14 +1,14 @@
-CREATE TABLE IF NOT EXISTS histamine_levels
+CREATE TABLE IF NOT EXISTS histamine_foods
 (
     id               INT AUTO_INCREMENT PRIMARY KEY,
-    compatibility    INT,
-    histamine        CHAR(2),
+    compatibility    CHAR(2),
+    level            CHAR(2),
     other_amines     CHAR(2),
     liberator        CHAR(2),
     blocker          CHAR(2),
     ingredient       VARCHAR(255),
     remarks          TEXT,
-    food_subcategory VARCHAR(255),
-    food_category    VARCHAR(255)
+    subcategory      VARCHAR(255),
+    category         VARCHAR(255)
 );
 
