@@ -1,6 +1,6 @@
 spring:
   application:
-    name: "histamine-food"
+    name: "histamine-food-ms"
   profiles:
     active: "dev"
   config:
@@ -10,7 +10,7 @@ spring:
     init:
       schema-locations: classpath:db/schema.sql
       data-locations: classpath:db/data.sql
-      mode: never
+      mode: always
   jpa:
     show-sql: true
 
