@@ -8,6 +8,6 @@ import java.util.List;
 
 public interface HistamineFoodRepository extends JpaRepository<HistamineFood, Integer> {
 
-    @Query("SELECT f FROM HistamineFood f where f.ingredient LIKE %:name%")
+    @Query("SELECT hf FROM HistamineFood hf where hf.ingredient LIKE %:name%")
     List<HistamineFood> findIngredientsByName(String name);
 }
