@@ -18,7 +18,6 @@ public class HistamineFoodServiceImpl implements IHistamineFoodService {
     private final HistamineFoodRepository histamineFoodRepository;
 
     /**
-     *
      * @param ingredient - ingredient name
      * @return List of ingredients contains ingredient name
      */
@@ -34,7 +33,6 @@ public class HistamineFoodServiceImpl implements IHistamineFoodService {
     }
 
     /**
-     *
      * @param id - histamine food id
      * @return histamine food dto object
      */

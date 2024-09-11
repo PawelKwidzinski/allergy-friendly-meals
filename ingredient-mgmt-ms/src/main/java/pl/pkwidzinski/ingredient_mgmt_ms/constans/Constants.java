@@ -1,7 +1,7 @@
 package pl.pkwidzinski.ingredient_mgmt_ms.constans;
 
-public final class IngredientsConstants {
-    private IngredientsConstants() {
+public final class Constants {
+    private Constants() {
         // restrict instantiation
     }
 
