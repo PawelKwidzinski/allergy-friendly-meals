@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:fragment="resultsList">
+  <ul class="list-group" th:if="${not #lists.isEmpty(histamineFoods)}">
+    <li class="list-group-item" th:each="food : ${histamineFoods}">
+      <span th:text="${food.ingredient}" class="fw-bold"></span> -
+      Level: <span th:text="${food.level}" class="badge bg-primary"></span>,
+      Compatibility: <span th:text="${food.compatibility}" class="badge bg-secondary"></span>
+      <button class="btn btn-sm btn-primary float-end"
+              hx-post="@{/product/select-ingredient}"
+              th:hx-vals="|{'name': '${food.ingredient}', 'histFoodId': ${food.id}}|"
+              hx-target="closest div.mb-2"
+              hx-swap="outerHTML">
+        Select
+      </button>
+    </li>
+  </ul>
+  <p class="text-muted" th:if="${#lists.isEmpty(histamineFoods)}">No histamine information found for this ingredient.</p>
+</div>
+</body>
+</html>

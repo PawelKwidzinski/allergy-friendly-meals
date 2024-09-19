@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Create Product</title>
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/5.1.3/css/bootstrap.min.css}"/>
+    <script src="/webjars/htmx/2.0.2/dist/htmx.min.js"></script>
+</head>
+<body class="container mt-5">
+<h1 class="mb-4">Create Product</h1>
+<form id="productForm" th:action="@{/product/create}" th:object="${product}" method="post">
+    <!-- Inne pola formularza -->
+    <div class="mb-3">
+        <label class="form-label">Ingredients:</label>
+        <div id="ingredients">
+            <div th:each="ingredient, stat : *{ingredients}" class="mb-2">
+                <div class="input-group">
+                    <input type="text" class="form-control ingredient-name" th:field="*{ingredients[__${stat.index}__].name}"
+                           th:hx-get="@{/product/check-ingredient}"
+                           hx-trigger="keyup changed delay:500ms"
+                           th:hx-target="'#ingredient-result-' + ${stat.index}"
+                           hx-params="ingredient=this.value"
+                           placeholder="Enter ingredient name" />
+                    <input type="hidden" class="ingredient-id" th:field="*{ingredients[__${stat.index}__].histFoodId}" />
+                </div>
+                <div th:id="'ingredient-result-' + ${stat.index}" class="mt-2"></div>
+            </div>
+        </div>
+        <button type="button" class="btn btn-secondary mt-2"
+                hx-get="@{/product/add-ingredient}"
+                hx-target="#ingredients"
+                hx-swap="beforeend">Add Ingredient</button>
+    </div>
+    <!-- Pozostałe pola formularza -->
+    <button type="submit" class="btn btn-primary">Create Product</button>
+</form>
+
+<div th:fragment="ingredientForm">
+    <div class="mb-2">
+        <div class="input-group">
+            <input type="text" class="form-control ingredient-name" name="ingredients[].name"
+                   th:hx-get="@{/product/check-ingredient}"
+                   hx-trigger="keyup changed delay:500ms"
+                   hx-target="closest div.mb-2"
+                   hx-params="ingredient=this.value"
+                   placeholder="Enter ingredient name" />
+            <input type="hidden" class="ingredient-id" name="ingredients[].histFoodId" />
+        </div>
+        <div class="ingredient-result mt-2"></div>
+    </div>
+</div>
+</body>
+</html>
