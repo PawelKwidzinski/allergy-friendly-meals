@@ -2,7 +2,7 @@
 ## General
 * An app for creating meals from allergy-friendly food ingredients. When the user creates a meal, each ingredient will be checked for histamine content (high content causes allergic reactions).
 * In the further development of the application, it is planned to add functionalities that will support the creation of meals (AI-Assistant-ms) and the management of food products available in the refrigerator and the home in general.
-* To visualize the retrieved data through microservices, it is planned to connect to Angular framework and deploy the frontend and backend on a Kubernetes cluster.
+* To visualize the retrieved data through microservices, it is planned to connect to Angular framework and deploy the backend on a Kubernetes cluster.
 ## Application development plan
 ### Configserver-ms
 #### Features:
