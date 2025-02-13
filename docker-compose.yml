@@ -1,0 +1,95 @@
+services:
+  ingredient-mongo:
+    image: mongo:6.0.17
+    container_name: ingredient-mongo
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=user
+      - MONGO_INITDB_ROOT_PASSWORD=pass
+      - MONGO_INITDB_DATABASE=ingredients_db
+    volumes:
+      - ingredient_mongo:/data
+      - ./init-data/init-mongo:/docker-entrypoint-initdb.d
+    networks:
+      - allergy-friendly-meals-net
+
+  ingredient-mongo-express:
+    image: mongo-express:1.0.2
+    container_name: ingredient-mongo-exp
+    ports:
+      - "90:8081"
+    environment:
+      - ME_CONFIG_MONGODB_AUTH_DATABASE=admin
+      - ME_CONFIG_MONGODB_ADMINUSERNAME=user
+      - ME_CONFIG_MONGODB_ADMINPASSWORD=pass
+      - ME_CONFIG_MONGODB_SERVER=ingredient-mongo
+    depends_on:
+      - ingredient-mongo
+    networks:
+      - allergy-friendly-meals-net
+
+  product-mongo:
+    image: mongo:6.0.17
+    container_name: product-mongo
+    ports:
+      - "27018:27017"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=user
+      - MONGO_INITDB_ROOT_PASSWORD=pass
+      - MONGO_INITDB_DATABASE=products_db
+    volumes:
+      - product_mongo:/data
+    networks:
+      - allergy-friendly-meals-net
+
+  product-mongo-express:
+    image: mongo-express:1.0.2
+    container_name: product-mongo-exp
+    ports:
+      - "91:8081"
+    environment:
+      - ME_CONFIG_MONGODB_AUTH_DATABASE=admin
+      - ME_CONFIG_MONGODB_ADMINUSERNAME=user
+      - ME_CONFIG_MONGODB_ADMINPASSWORD=pass
+      - ME_CONFIG_MONGODB_SERVER=product-mongo
+    depends_on:
+      - product-mongo
+    networks:
+      - allergy-friendly-meals-net
+
+
+#  product-mysql:
+#    image: mysql:8.0
+#    container_name: product-mysql
+#    environment:
+#      MYSQL_PASSWORD: pass
+#      MYSQL_ROOT_PASSWORD: pass
+#      MYSQL_DATABASE: product-db
+#      MYSQL_USER: user
+#    ports:
+#      - "3306:3306"
+#    volumes:
+#      - product_mysql:/data
+#    networks:
+#      - allergy-friendly-meals-net
+#
+#  product-phpmyadmin:
+#    image: phpmyadmin/phpmyadmin
+#    container_name: product-phpmyadmin
+#    environment:
+#      PMA_ARBITRARY: 1
+#    ports:
+#      - "80:80"
+#    depends_on:
+#      - product-mysql
+#    networks:
+#      - allergy-friendly-meals-net
+
+networks:
+  allergy-friendly-meals-net:
+    driver: bridge
+
+volumes:
+  ingredient_mongo:
+  product_mongo:
